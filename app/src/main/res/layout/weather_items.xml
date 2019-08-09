@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/card_margin">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:src="@drawable/abc_btn_check_material"
+        />
+
+    <TextView
+        android:id="@+id/key"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_toRightOf="@id/icon"
+        android:fontFamily="@font/montserrat"
+        android:padding="6dp"
+        android:text="key"
+        android:textSize="14dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="233dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/key"
+        android:layout_alignRight="@id/key"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="-203dp"
+        android:layout_toRightOf="@id/icon"
+        android:fontFamily="@font/montserrat"
+        android:padding="6dp"
+        android:text="value"
+        android:textColor="#333333"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

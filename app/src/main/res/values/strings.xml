@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">WeatherApplication</string>
+    <string name="app_name">Weather Application</string>
+    <string name="tab_label1">Today</string>
+    <string name="tab_label2">Tomorrow</string>
+    <string name="tab_label3">Next Day</string>
+
+    <string-array name="weather_keys">
+        <item>Maximum Temperature</item>
+        <item>Minimum Temperature</item>
+        <item>Wind Direction</item>
+        <item>Wind Speed</item>
+        <item>Visibility</item>
+        <item>Pressure</item>
+        <item>Humidity</item>
+        <item>UV Risk</item>
+        <item>Pollution</item>
+        <item>Sunrise</item>
+        <item>Sunset</item>
+    </string-array>
+
+
 </resources>

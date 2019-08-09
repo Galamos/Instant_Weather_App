@@ -152,7 +152,7 @@ public class PullParser {
                                 break;
                         }
                     }
-                    weather.setTitle(checkRain(title));
+                    weather.setTitle(title);
                     weather.setDate(date);
                     description = null;
                     title = null;
@@ -163,14 +163,6 @@ public class PullParser {
         return weather;
     }
 
-    private static String checkRain(String title) {
-        if (title.equals("")) return "";
-        else {
-            String[] titleSplit = title.split(", ");
-            String[] another = titleSplit[0].split(":", 2);
-            return another[1];
-        }
-    }
 
     private static HashMap<String, String> extractValues(String description) {
         HashMap<String, String> values = new HashMap<>();

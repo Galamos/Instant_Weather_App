@@ -30,7 +30,7 @@ public class DataManager {
         this.mCities.add(city);
     }
 
-    public City getCities(String name) {
+    public City getCity(String name) {
         for (City city : this.mCities) {
             if (city.getCityName().equals(name)) return city;
         }

@@ -1,17 +1,19 @@
 package org.me.gcu.coursework.weatherapplication.View;
 
-import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+import org.me.gcu.coursework.weatherapplication.Adapter.RecyclerAdapter;
 import org.me.gcu.coursework.weatherapplication.Model.City;
 import org.me.gcu.coursework.weatherapplication.Persistence.DataManager;
 import org.me.gcu.coursework.weatherapplication.Persistence.PullParser;
 import org.me.gcu.coursework.weatherapplication.R;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.me.gcu.coursework.weatherapplication.Persistence.DataManager.getInstance;
@@ -19,9 +21,12 @@ import static org.me.gcu.coursework.weatherapplication.Persistence.DataManager.g
 public class MainActivity extends AppCompatActivity {
 
     private static String baseUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/";
+    private static RecyclerAdapter adapter;
+    private static RecyclerView recyclerView;
+    private static int	gridColumnCount;
 
     private static final Map<String, String> city_id = new HashMap<String, String>() {{
-        put("Abuja", "2352777");
+        put("Yaounde", "2220957");
         put("Glasgow", "2648579");
         put("London", "2643743");
         put("New York", "5128581");
@@ -34,10 +39,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        gridColumnCount	=	getResources().getInteger(R.integer.grid_column_count);
+
         new xmlLoader().execute(baseUrl);
 
-       List<City> cityList = DataManager.getInstance().getCities();
-       System.out.println(cityList);
+    }
+
+    private void initializeData() {
+        recyclerView = findViewById(R.id.recyclerView);
+         adapter = new RecyclerAdapter(this,
+                DataManager.getInstance().getCities());
+        recyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
+        recyclerView.setAdapter(adapter);
+
+        //Notify the adapter of the change
+        adapter.notifyDataSetChanged();
     }
 
     private class xmlLoader extends AsyncTask<String, Void, String> {
@@ -52,10 +68,11 @@ public class MainActivity extends AppCompatActivity {
             return "Completed...";
         }
 
-//        @Override
-//        protected void onPostExecute(String result) {
-//            setContentView(R.layout.activity_main);
-//            initializeDisplay();
-//        }
+        @Override
+        protected void onPostExecute(String result) {
+            setContentView(R.layout.activity_main);
+            initializeData();
+        }
     }
+
 }
